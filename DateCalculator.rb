@@ -5,13 +5,12 @@ class DateCalculator
     @year = 1980
   end
   def convert()
-    while (@days > 365) do
+    while (@days >= 365) do
       if leap_year?
+        break if @days == 365
         add_leap_year
       else
         add_regular_year
-        @days -= 365
-        @year += 1
       end
     end
     return @year
@@ -21,14 +20,14 @@ class DateCalculator
       (@year % 4 == 0 && @year % 100 != 0))
   end
   def add_leap_year
-    if (@days > 366)
+    if (@days >= 366)
       @days -= 366
       @year += 1
     end
   end
   
   def add_regular_year
-    if (@days > 365)
+    if (@days >= 365)
       @days -= 365
       @year += 1
     end
